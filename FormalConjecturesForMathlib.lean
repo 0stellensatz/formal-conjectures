@@ -169,6 +169,7 @@ public import FormalConjecturesForMathlib.Data.ZMod.Fp
 public import FormalConjecturesForMathlib.Data.ZMod.PerfectDifferenceSet
 public import FormalConjecturesForMathlib.Dynamics.SymbolicDynamics.BlockComplexity
 public import FormalConjecturesForMathlib.FieldTheory.AbsoluteGaloisGroup
+public import FormalConjecturesForMathlib.FieldTheory.CyclotomicClosure
 public import FormalConjecturesForMathlib.FieldTheory.MilnorKTheory
 public import FormalConjecturesForMathlib.FieldTheory.MvRatFunc.Defs
 public import FormalConjecturesForMathlib.Geometry.Euclidean
@@ -182,6 +183,7 @@ public import FormalConjecturesForMathlib.Geometry.«2d»
 public import FormalConjecturesForMathlib.Geometry.«3d»
 public import FormalConjecturesForMathlib.GroupTheory.DerivedLength
 public import FormalConjecturesForMathlib.GroupTheory.ElementOrders
+public import FormalConjecturesForMathlib.GroupTheory.EmbeddingProblem
 public import FormalConjecturesForMathlib.GroupTheory.GroupAction.InvolutionFixedPoints
 public import FormalConjecturesForMathlib.GroupTheory.GroupAction.MovedPoints
 public import FormalConjecturesForMathlib.GroupTheory.GroupAction.OrbitCounts
