@@ -21,8 +21,9 @@ public import FormalConjecturesUtil
 # Conjectures on absolute Galois groups from Dèbes–Deschamps
 
 [DD97, §2] arranges classical conjectures on absolute Galois groups in a chain of implications.
-This file states the Fried–Völklein conjecture **FrVo**. It implies Shafarevich's conjecture
-**SHA**, stated as `Shafarevich.shafarevich`.
+This file states the part
+$$\textbf{Split EP}/K_{hilb.} \implies \textbf{FrVo} \implies \textbf{SHA},$$
+where **SHA** is Shafarevich's conjecture `Shafarevich.shafarevich`.
 
 Mathlib has no free profinite groups. As for `Shafarevich.shafarevich`, we state "pro-free" with
 Iwasawa's criterion [DD97, Th. 2.1], [FJ08, Cor. 24.8.3]: for a countable field $K$, $G_K$ is
@@ -35,6 +36,7 @@ pro-free if and only if every finite embedding problem for $G_K$ is properly sol
 - [FJ08] M. D. Fried, M. Jarden, *Field Arithmetic*, 3rd ed., Springer, 2008.
 - [FV92] M. D. Fried, H. Völklein, *The embedding problem over a Hilbertian PAC-field*,
   Ann. of Math. 135 (1992), 469–481.
+- [Po96] F. Pop, *Embedding problems over large fields*, Ann. of Math. 144 (1996), 1–35.
 -/
 
 @[expose] public section
@@ -57,6 +59,21 @@ theorem fried_volklein (K : Type) [Field K] [Countable K] (hK : Field.IsHilberti
       (β : B →* A), IsFinite α β → ∃ γ, IsWeakSolution α β γ)
     {A B : Type} [Group A] [Group B] (α : Field.absoluteGaloisGroup K →* A) (β : B →* A)
     (h : IsFinite α β) : ∃ γ, IsProperSolution α β γ := by
+  sorry
+
+/-- **Split embedding problem conjecture over Hilbertian fields** [DD97, §2.1.2]. Let $K$ be a
+Hilbertian field. Then every finite split embedding problem for $G_K$ has a proper solution.
+
+The embedding problem $(\alpha, \beta)$ is split if $\beta : B \to A$ has a group-theoretic
+section $s$.
+
+This implies `fried_volklein`: by projectivity and the weak-to-split reduction, every finite
+embedding problem reduces to a split one [DD97, §2.1.2]. The case $A = 1$ says that every finite
+group is a Galois group over $K$. Pop proved the conjecture for ample Hilbertian fields [Po96]. -/
+@[category research open, AMS 12 20]
+theorem split_ep_hilbertian (K : Type*) [Field K] (hK : Field.IsHilbertian K)
+    {A B : Type} [Group A] [Group B] (α : Field.absoluteGaloisGroup K →* A) (β : B →* A)
+    (h : IsFinite α β) (s : A →* B) (hs : β.comp s = .id A) : ∃ γ, IsProperSolution α β γ := by
   sorry
 
 end DebesDeschamps
