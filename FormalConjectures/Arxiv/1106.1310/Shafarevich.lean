@@ -24,6 +24,7 @@ public import FormalConjectures.Wikipedia.InverseGalois
 Let $\mathbb{Q}^{ab} = \mathbb{Q}(\mu_\infty)$ be the maximal abelian extension of $\mathbb{Q}$.
 Shafarevich conjectured that its absolute Galois group $G_{\mathbb{Q}^{ab}}$ is a free profinite
 group. Since $\mathbb{Q}^{ab}$ is countable and Hilbertian, the rank would be $\aleph_0$.
+It is a special case of the Fried–Völklein conjecture `DebesDeschamps.fried_volklein`.
 
 Mathlib has no free profinite groups. We state the conjecture with Iwasawa's criterion
 [FJ08, Cor. 24.8.3]: a profinite group of rank at most $\aleph_0$ is free of rank $\aleph_0$ if

@@ -170,6 +170,7 @@ public import FormalConjecturesForMathlib.Data.ZMod.PerfectDifferenceSet
 public import FormalConjecturesForMathlib.Dynamics.SymbolicDynamics.BlockComplexity
 public import FormalConjecturesForMathlib.FieldTheory.AbsoluteGaloisGroup
 public import FormalConjecturesForMathlib.FieldTheory.CyclotomicClosure
+public import FormalConjecturesForMathlib.FieldTheory.Hilbertian
 public import FormalConjecturesForMathlib.FieldTheory.MilnorKTheory
 public import FormalConjecturesForMathlib.FieldTheory.MvRatFunc.Defs
 public import FormalConjecturesForMathlib.Geometry.Euclidean
