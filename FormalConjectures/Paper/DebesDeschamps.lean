@@ -25,7 +25,8 @@ public import FormalConjectures.Wikipedia.InverseGalois
 This file states the parts
 $$\textbf{Split EP}/K(T) \iff \textbf{Split EP}/K_{hilb.} \implies \textbf{FrVo}
   \implies \textbf{SHA},$$
-$$\textbf{Split EP}/K_{hilb.} \implies \textbf{IGP}/K_{hilb.} \implies \textbf{IGP},$$
+$$\textbf{RIGP}/K(T) \implies \textbf{IGP}/K_{hilb.} \implies \textbf{IGP}, \qquad
+  \textbf{Split EP}/K_{hilb.} \implies \textbf{IGP}/K_{hilb.},$$
 where **SHA** is Shafarevich's conjecture `Shafarevich.shafarevich` and **IGP** is the inverse
 Galois problem `InverseGalois.inverse_galois_problem`.
 
@@ -100,6 +101,22 @@ Hilbert's irreducibility theorem. -/
 @[category research open, AMS 12 20]
 theorem igp_hilbertian (K : Type*) [Field K] (hK : Field.IsHilbertian K)
     (G : Type*) [Group G] [Finite G] : InverseGalois.IsRealizable K G := by
+  sorry
+
+/-- **Regular inverse Galois problem** [DD97, §2.1.1]. Let $K$ be any field. Then every finite
+group $G$ is the Galois group of a Galois extension $E/K(T)$ that is regular, that is, $K$ is
+algebraically closed in $E$.
+
+Every finite extension of $K(T)$ embeds in an algebraic closure of $K(T)$, so we take $E$ inside
+`AlgebraicClosure (RatFunc K)`.
+
+This implies `igp_hilbertian` by specialising $T$ [DD97, §2.1.1]. A regular realisation over $K$
+gives one over every extension of $K$, so it suffices to treat the prime fields [DD97, §1]. -/
+@[category research open, AMS 12 20]
+theorem rigp_ratFunc (K : Type*) [Field K] (G : Type*) [Group G] [Finite G] :
+    ∃ E : IntermediateField (RatFunc K) (AlgebraicClosure (RatFunc K)),
+      IsGalois (RatFunc K) E ∧ Nonempty (G ≃* (E ≃ₐ[RatFunc K] E)) ∧
+      ∀ x : E, IsAlgebraic K x → x ∈ (algebraMap K E).range := by
   sorry
 
 end DebesDeschamps
