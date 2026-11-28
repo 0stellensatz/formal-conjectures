@@ -22,7 +22,10 @@ public import FormalConjectures.Wikipedia.InverseGalois
 # Conjectures on absolute Galois groups from Dèbes–Deschamps
 
 [DD97, §2] arranges classical conjectures on absolute Galois groups in a chain of implications.
-This file states the parts
+This file states the Main Conjecture [DD97, §2.2], which implies all of them:
+$$\textbf{Main Conj.} \implies \textbf{RIGP}/K(T), \qquad
+  \textbf{Main Conj.} \implies \textbf{Split EP}/K(T),$$
+together with the chains
 $$\textbf{Split EP}/K(T) \iff \textbf{Split EP}/K_{hilb.} \implies \textbf{FrVo}
   \implies \textbf{SHA},$$
 $$\textbf{RIGP}/K(T) \implies \textbf{IGP}/K_{hilb.} \implies \textbf{IGP}, \qquad
@@ -74,7 +77,8 @@ section $s$.
 
 This implies `fried_volklein`: by projectivity and the weak-to-split reduction, every finite
 embedding problem reduces to a split one [DD97, §2.1.2]. The case $A = 1$ says that every finite
-group is a Galois group over $K$, which is `igp_hilbertian`. Pop proved the conjecture for ample Hilbertian fields [Po96]. -/
+group is a Galois group over $K$, which is `igp_hilbertian`. Pop proved the conjecture for ample
+Hilbertian fields [Po96]. -/
 @[category research open, AMS 12 20]
 theorem split_ep_hilbertian (K : Type*) [Field K] (hK : Field.IsHilbertian K)
     {A B : Type} [Group A] [Group B] (α : Field.absoluteGaloisGroup K →* A) (β : B →* A)
@@ -117,6 +121,36 @@ theorem rigp_ratFunc (K : Type*) [Field K] (G : Type*) [Group G] [Finite G] :
     ∃ E : IntermediateField (RatFunc K) (AlgebraicClosure (RatFunc K)),
       IsGalois (RatFunc K) E ∧ Nonempty (G ≃* (E ≃ₐ[RatFunc K] E)) ∧
       ∀ x : E, IsAlgebraic K x → x ∈ (algebraMap K E).range := by
+  sorry
+
+/-- **Main Conjecture** [DD97, §2.2]. Let $K$ be any field, and let $N = G_{K_s(T)}$ as a closed
+subgroup of $G_{K(T)}$. Let $(f, \alpha)$ be a finite embedding problem for $G_{K(T)}$, with
+$f : G_{K(T)} \to H$ and $\alpha : G \to H$, that has a weak solution. Then it has a proper
+solution $g$ with $g(N) = \alpha^{-1}(f(N))$.
+
+[DD97] states the conjecture with a diagram of exact sequences
+$\bar H \hookrightarrow H \twoheadrightarrow \Gamma$ and
+$\bar G \hookrightarrow G \twoheadrightarrow \Gamma$ over
+$G_{K_s(T)} \hookrightarrow G_{K(T)} \twoheadrightarrow G_K$. The vertical maps are surjective
+and the rows are exact, so the diagram is determined by $(f, \alpha)$: $\bar H = f(N)$,
+$\Gamma = H / \bar H$ and $\bar G = \alpha^{-1}(\bar H)$, as in [DD97, §2.2.2].
+By [DD97, Remark 2.3 (a)], a weak solution of the diagram is a weak solution $g$ of $(f, \alpha)$.
+It is proper if, in addition, $g$ is surjective and $g(N) = \bar G$.
+
+We take $N$ to be the subgroup fixing $\bar K(T)$, where $\bar K$ is the algebraic closure of
+$K$ in `AlgebraicClosure (RatFunc K)`. The field $\bar K(T)$ is purely inseparable over
+$K_s(T)$, so every automorphism over $K_s(T)$ fixes it, and this subgroup is $G_{K_s(T)}$.
+
+Dropping the condition on $N$ gives `split_ep_ratFunc`. The case $H = 1$ gives `rigp_ratFunc`.
+Pop proved the conjecture for ample fields $K$ [Po96]. -/
+@[category research open, AMS 12 20]
+theorem main_conjecture (K : Type*) [Field K] {G H : Type} [Group G] [Group H]
+    (f : Field.absoluteGaloisGroup (RatFunc K) →* H) (α : G →* H) (h : IsFinite f α)
+    (hweak : ∃ g, IsWeakSolution f α g) :
+    let N : Subgroup (Field.absoluteGaloisGroup (RatFunc K)) :=
+      (IntermediateField.adjoin (RatFunc K)
+        {x : AlgebraicClosure (RatFunc K) | IsAlgebraic K x}).fixingSubgroup
+    ∃ g, IsProperSolution f α g ∧ N.map g = (N.map f).comap α := by
   sorry
 
 end DebesDeschamps
