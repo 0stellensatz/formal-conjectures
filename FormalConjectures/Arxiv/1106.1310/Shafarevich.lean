@@ -26,6 +26,11 @@ Shafarevich conjectured that its absolute Galois group $G_{\mathbb{Q}^{ab}}$ is 
 group. Since $\mathbb{Q}^{ab}$ is countable and Hilbertian, the rank would be $\aleph_0$.
 It is a special case of the Fried–Völklein conjecture `DebesDeschamps.fried_volklein`.
 
+The conjecture is also stated for every number field $K$ in place of $\mathbb{Q}$, with
+$K(\mu_\infty)$ in place of $\mathbb{Q}^{ab}$ [NSW08, Ch. IX]. For $K \ne \mathbb{Q}$ the
+maximal abelian extension $K^{ab}$ contains $K(\mu_\infty)$ and is in general larger. We state
+both versions as variants.
+
 Mathlib has no free profinite groups. We state the conjecture with Iwasawa's criterion
 [FJ08, Cor. 24.8.3]: a profinite group of rank at most $\aleph_0$ is free of rank $\aleph_0$ if
 and only if every finite embedding problem for it is properly solvable.
@@ -34,9 +39,11 @@ and only if every finite embedding problem for it is properly solvable.
 - [BSF11] L. Bary-Soroker, A. Fehm, *Open problems in the theory of ample fields*,
   [arXiv:1106.1310](https://arxiv.org/abs/1106.1310), Conjecture 3.1.
 - [FJ08] M. D. Fried, M. Jarden, *Field Arithmetic*, 3rd ed., Springer, 2008,
-  Remark 16.9.5, Corollary 24.8.3, Example 24.8.5 (a).
+  Remark 16.9.5, Theorem 16.11.3, Corollary 24.8.3, Example 24.8.5 (a).
 - [MM18] G. Malle, B. H. Matzat, *Inverse Galois Theory*, 2nd ed., Springer, 2018,
-  Section IV.3.3, Conjecture IV.3.11.
+  Section IV.3.3, p. 309.
+- [NSW08] J. Neukirch, A. Schmidt, K. Wingberg, *Cohomology of Number Fields*, 2nd ed., Springer,
+  2008, Chapter IX (introduction), Corollary 8.1.18, Corollary 9.5.4.
 -/
 
 @[expose] public section
@@ -79,6 +86,37 @@ with solvable $B$ is properly solvable. -/
 @[category research solved, AMS 12 20]
 theorem shafarevich.variants.prosolvable {A B : Type} [Group A] [Group B] [Group.IsSolvable B]
     (α : G →* A) (β : B →* A) (h : IsFinite α β) : ∃ γ, IsProperSolution α β γ := by
+  sorry
+
+/-- **Shafarevich's conjecture for number fields** [NSW08, Ch. IX]. For a number field $K$, the
+absolute Galois group of $K(\mu_\infty)$ is free profinite of countable rank. As in
+`shafarevich`, we state this with Iwasawa's criterion. For $K = \mathbb{Q}$ this is
+`shafarevich`.
+
+It follows from `DebesDeschamps.fried_volklein`: $K(\mu_\infty)$ is countable, it is Hilbertian
+as an abelian extension of $K$ [FJ08, Th. 16.11.3], and its absolute Galois group has
+cohomological dimension at most $1$, hence is projective [NSW08, Cor. 8.1.18, proof of
+Cor. 9.5.4]. -/
+@[category research open, AMS 11 12 20]
+theorem shafarevich.variants.numberField (K : Type) [Field K] [NumberField K] {A B : Type}
+    [Group A] [Group B] (α : Field.absoluteGaloisGroup (IntermediateField.cyclotomicClosure K) →* A)
+    (β : B →* A) (h : IsFinite α β) : ∃ γ, IsProperSolution α β γ := by
+  sorry
+
+/-- **Shafarevich's conjecture for the maximal abelian extension of a number field.** For a number
+field $K$, the absolute Galois group of $K^{ab}$ is free profinite of countable rank. Here $K^{ab}$
+is the fixed field of the commutator subgroup of $G_K$. For $K = \mathbb{Q}$ this is
+`shafarevich`, by the Kronecker–Weber theorem.
+
+It follows from `DebesDeschamps.fried_volklein` for the same reasons as
+`shafarevich.variants.numberField` [FJ08, Th. 16.11.3], [NSW08, Cor. 8.1.18, proof of
+Cor. 9.5.4]. Its maximal prosolvable quotient is free prosolvable [NSW08, Cor. 9.5.4 (iii)]. -/
+@[category research open, AMS 11 12 20]
+theorem shafarevich.variants.numberField_ab (K : Type) [Field K] [NumberField K] {A B : Type}
+    [Group A] [Group B]
+    (α : Field.absoluteGaloisGroup
+      (IntermediateField.fixedField (commutator (Field.absoluteGaloisGroup K))) →* A)
+    (β : B →* A) (h : IsFinite α β) : ∃ γ, IsProperSolution α β γ := by
   sorry
 
 end Shafarevich
